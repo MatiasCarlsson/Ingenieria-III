@@ -14,9 +14,8 @@ body {
 }
 
 body {
-  background: linear-gradient(135deg, var(--color-7) 0%, var(--color-8) 100%);
-  color: var(--color-1);
-  overflow: hidden;
+  background: var(--bg-hueso);
+  color: var(--secondary-marron-tierra);
 }
 
 /* CONTENEDOR PRINCIPAL */
@@ -24,9 +23,26 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: linear-gradient(180deg, var(--color-8) 0%, var(--color-7) 50%, #d4e8c1 100%);
-  overflow: hidden;
+  overflow-y: auto;
 }
+
+/* SIDEBAR */
+.sidebar {
+  background: var(--primary-verde-bosque);
+  padding: 0.75rem 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* MAIN CONTENT */
 
 /* HEADER */
 .header {
@@ -34,12 +50,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background: linear-gradient(90deg, var(--color-6) 0%, var(--color-5) 100%);
+  background: var(--primary-verde-bosque);
   box-shadow: 0 4px 12px rgba(40, 69, 40, 0.2);
 }
 
 .icon-btn {
-  background: var(--color-7);
+  background: var(--accent-verde-claro);
   border: 2px solid var(--color-1);
   border-radius: 50%;
   width: 45px;
@@ -54,7 +70,7 @@ body {
 }
 
 .icon-btn:hover {
-  background: var(--color-8);
+  background: var(--bg-hueso);
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
@@ -77,7 +93,7 @@ body {
   padding: 0.75rem 1rem;
   border: 2px solid var(--color-1);
   border-radius: 25px;
-  background: var(--color-8);
+  background: var(--bg-hueso);
   font-family: var(--font-poppins);
   font-size: 1rem;
   color: var(--color-1);
@@ -85,18 +101,18 @@ body {
 }
 
 .search-container input::placeholder {
-  color: var(--color-3);
+  color: var(--contrast-ciruela);
   opacity: 0.7;
 }
 
 .search-container input:focus {
   outline: none;
-  border-color: var(--color-3);
+  border-color: var(--secondary-terracota);
   box-shadow: 0 0 8px rgba(146, 69, 28, 0.3);
 }
 
 .search-btn {
-  background: var(--color-3);
+  background: var(--primary-verde-bosque);
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -107,20 +123,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-8);
+  color: var(--bg-hueso);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .search-btn:hover {
-  background: var(--color-1);
+  background: var(--secondary-verde-oliva);
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* ÁREA DE DESPLAZAMIENTO */
-.app-container > section:nth-child(n + 2):not(.bottom-nav) {
-  overflow-y: auto;
-}
+
 
 /* TARJETA DE MASCOTA */
 .mascota-card {
@@ -129,8 +142,8 @@ body {
   justify-content: space-between;
   padding: 2rem 1.5rem;
   margin: 1rem 1.5rem;
-  background: linear-gradient(135deg, var(--color-7) 0%, var(--color-8) 100%);
-  border: 3px solid var(--color-3);
+  background: var(--bg-hueso);
+  border: 3px solid var(--secondary-marron-tierra);
   border-radius: 20px;
   box-shadow: 0 6px 16px rgba(71, 43, 35, 0.15);
   animation: slideInLeft 0.5s ease;
@@ -158,13 +171,13 @@ body {
 .mascota-info h2 {
   font-family: var(--font-retro);
   font-size: 1.5rem;
-  color: var(--color-1);
+  color: var(--primary-verde-bosque);
 }
 
 .mascota-img {
-  width: 100px;
-  height: 100px;
-  background: var(--color-6);
+  max-width: 300px;
+  max-height: 300px;
+  background: var(--accent-verde-claro);
   border: 2px solid var(--color-1);
   border-radius: 50%;
   object-fit: cover;
@@ -172,7 +185,7 @@ body {
 }
 
 .fav-btn-large {
-  background: var(--color-4);
+  background: var(--accent-rosa);
   border: 2px solid var(--color-1);
   border-radius: 50%;
   width: 60px;
@@ -216,7 +229,7 @@ body {
 }
 
 .info-card {
-  background: linear-gradient(135deg, var(--color-5) 0%, var(--color-6) 100%);
+  background: var(--secondary-verde-oliva);
   padding: 1.5rem;
   border-radius: 15px;
   border: 2px solid var(--color-1);
@@ -233,13 +246,13 @@ body {
 .info-card h3 {
   font-family: var(--font-retro);
   font-size: 1.1rem;
-  color: var(--color-8);
+  color: var(--bg-hueso);
   margin-bottom: 0.5rem;
 }
 
 .info-card .status {
   font-size: 0.95rem;
-  color: var(--color-7);
+  color: var(--accent-verde-claro);
   font-weight: 600;
 }
 
@@ -262,11 +275,11 @@ body {
 .section-header h2 {
   font-family: var(--font-retro);
   font-size: 1.5rem;
-  color: var(--color-1);
+  color: var(--primary-verde-bosque);
 }
 
 .view-all {
-  color: var(--color-3);
+  color: var(--secondary-terracota);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -274,42 +287,22 @@ body {
 }
 
 .view-all:hover {
-  color: var(--color-1);
+  color: var(--contrast-ciruela);
   text-decoration: underline;
 }
 
 /* SCROLL DE TARJETAS */
-.cards-scroll {
-  display: flex;
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-behavior: smooth;
-}
-
-.cards-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.cards-scroll::-webkit-scrollbar-track {
-  background: var(--color-7);
-  border-radius: 3px;
-}
-
-.cards-scroll::-webkit-scrollbar-thumb {
-  background: var(--color-3);
-  border-radius: 3px;
-}
-
-.cards-scroll::-webkit-scrollbar-thumb:hover {
-  background: var(--color-1);
 }
 
 /* TARJETAS DE CULTIVOS */
 .crop-card {
   min-width: 140px;
-  background: linear-gradient(135deg, var(--color-8) 0%, var(--color-7) 100%);
-  border: 2px solid var(--color-3);
+  background: var(--accent-verde-claro);
+  border: 2px solid var(--secondary-marron-tierra);
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(146, 69, 28, 0.2);
@@ -322,15 +315,11 @@ body {
   box-shadow: 0 8px 20px rgba(146, 69, 28, 0.3);
 }
 
-.image-placeholder {
+.crop-image {
   width: 100%;
-  height: 100px;
-  background: linear-gradient(135deg, var(--color-5) 0%, var(--color-6) 100%);
-  border-bottom: 2px solid var(--color-3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
+  max-height: 300px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--secondary-marron-tierra);
 }
 
 .crop-details {
@@ -338,7 +327,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: var(--color-8);
+  background: var(--bg-hueso);
 }
 
 .crop-details span {
@@ -364,19 +353,7 @@ body {
   transform: scale(0.9);
 }
 
-/* NAVEGACIÓN INFERIOR */
-.bottom-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0.75rem 0;
-  background: linear-gradient(90deg, var(--color-1) 0%, var(--color-5) 100%);
-  border-top: 3px solid var(--color-3);
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
-  position: relative;
-  z-index: 100;
-}
-
+/* NAVEGACIÓN LATERAL */
 .nav-item {
   display: flex;
   flex-direction: column;
@@ -384,7 +361,7 @@ body {
   gap: 0.4rem;
   background: none;
   border: none;
-  color: var(--color-8);
+  color: var(--bg-hueso);
   cursor: pointer;
   font-size: 1.5rem;
   transition: all 0.3s ease;
@@ -400,12 +377,12 @@ body {
 }
 
 .nav-item:hover {
-  color: var(--color-7);
+  color: var(--accent-verde-claro);
   transform: scale(1.1);
 }
 
 .nav-item.active {
-  color: var(--color-7);
+  color: var(--accent-verde-claro);
   transform: scale(1.15);
 }
 
@@ -415,27 +392,27 @@ body {
   bottom: -8px;
   width: 20px;
   height: 3px;
-  background: var(--color-7);
+  background: var(--accent-verde-claro);
   border-radius: 3px;
 }
 
 /* BOTÓN SCAN PRINCIPAL */
 .scan-main {
+  background: var(--accent-rosa);
+  border-radius: 50%;
   width: 50px;
   height: 50px;
-  background: var(--color-4);
-  border-radius: 50%;
-  border: 2px solid var(--color-8);
   font-size: 1.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(187, 84, 105, 0.4);
   transform: translateY(-10px);
+  border: 2px solid var(--bg-hueso);
 }
 
 .scan-main:hover {
-  background: var(--color-3);
+  background: var(--secondary-terracota);
   box-shadow: 0 6px 16px rgba(187, 84, 105, 0.6);
   transform: translateY(-12px);
 }
@@ -467,8 +444,8 @@ body {
     min-width: 120px;
   }
 
-  .image-placeholder {
-    height: 80px;
+  .crop-image {
+    max-height: 300px;
   }
 
   .app-container {

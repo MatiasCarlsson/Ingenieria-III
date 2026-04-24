@@ -9,73 +9,101 @@
   </head>
   <body>
     <main class="app-container">
-      <header class="header">
-        <button class="icon-btn settings-btn" aria-label="Configuración">⚙️</button>
-        <div class="search-container">
-          <input type="text" placeholder="Buscar..." aria-label="Buscar cultivos" />
-          <button class="search-btn">🔍</button>
-        </div>
-      </header>
+      <div class="main-content">
+        <header class="header">
+          <button class="icon-btn settings-btn" aria-label="Configuración">⚙️</button>
+          <div class="search-container">
+            <input type="text" placeholder="Buscar..." aria-label="Buscar cultivos" />
+            <button class="search-btn">🔍</button>
+          </div>
+        </header>
 
-      <section class="mascota-card">
-        <div class="mascota-info">
-          <h2>Mi Mascota</h2>
-          <img src="mascota-mate.png" alt="Mascota YVY-PORA tomando mate" class="mascota-img" />
-        </div>
-        <button class="fav-btn-large" aria-label="Añadir mascota a favoritos">❤️</button>
-      </section>
+        <section class="mascota-card">
+          <div class="mascota-info">
+            <h2>Mi Mascota</h2>
+            <img src="public/assets/fonts/img/mascota.png" alt="Mascota YVY-PORA" class="mascota-img" />
+          </div>
+          <button class="fav-btn-large" aria-label="Añadir mascota a favoritos">❤️</button>
+        </section>
 
-      <section class="context-grid">
-        <article class="info-card">
-          <h3>Clima ☀️</h3>
-          <p class="status">Soleado</p>
-        </article>
-        <article class="info-card">
-          <h3>Fase Lunar 🌙</h3>
-          <p class="status">Menguante</p>
-        </article>
-      </section>
-
-      <section class="cultivos-section">
-        <div class="section-header">
-          <h2>¿Qué cultivar?</h2>
-          <a href="#" class="view-all">Ver todo →</a>
-        </div>
-
-        <div class="cards-scroll">
-          <article class="crop-card">
-            <div class="image-placeholder"></div>
-            <div class="crop-details">
-              <span>Tomate</span>
-              <button class="fav-small">♡</button>
-            </div>
+        <section class="context-grid">
+          <article class="info-card">
+            <h3>Clima ☀️</h3>
+            <p class="status">Soleado</p>
           </article>
-
-          <article class="crop-card">
-            <div class="image-placeholder"></div>
-            <div class="crop-details">
-              <span>Lechuga</span>
-              <button class="fav-small">♡</button>
-            </div>
+          <article class="info-card">
+            <h3>Fase Lunar 🌙</h3>
+            <p class="status">Menguante</p>
           </article>
+        </section>
 
-          <article class="crop-card">
-            <div class="image-placeholder"></div>
-            <div class="crop-details">
-              <span>Cebolla</span>
-              <button class="fav-small">♡</button>
-            </div>
-          </article>
-        </div>
-      </section>
+        <section class="cultivos-section">
+          <div class="section-header">
+            <h2>¿Qué cultivar?</h2>
+            <a href="#" class="view-all">Ver todo →</a>
+          </div>
 
-      <nav class="bottom-nav">
-        <button class="nav-item active">🏠<span>Home</span></button>
-        <button class="nav-item">🌱<span>Mi Huerta</span></button>
-        <button class="nav-item scan-main" aria-label="Escanear">📸</button>
-        <button class="nav-item">🧭<span>Explorar</span></button>
-        <button class="nav-item">👥<span>Comunidad</span></button>
-      </nav>
+          <div class="cards-grid">
+            <article class="crop-card">
+              <img src="public/assets/fonts/img/Tomate.jpg" alt="Tomate" class="crop-image" />
+              <div class="crop-details">
+                <span>Tomate</span>
+                <button class="fav-small">♡</button>
+              </div>
+            </article>
+
+            <article class="crop-card">
+              <img src="public/assets/fonts/img/lechuga.jpg" alt="Lechuga" class="crop-image" />
+              <div class="crop-details">
+                <span>Lechuga</span>
+                <button class="fav-small">♡</button>
+              </div>
+            </article>
+
+            <article class="crop-card">
+              <img src="public/assets/fonts/img/cebollla.jpg" alt="Cebolla" class="crop-image" />
+              <div class="crop-details">
+                <span>Cebolla</span>
+                <button class="fav-small">♡</button>
+              </div>
+            </article>
+
+            <article class="crop-card">
+              <img src="public/assets/fonts/img/zanahoria.jpg" alt="Zanahoria" class="crop-image" />
+              <div class="crop-details">
+                <span>Zanahoria</span>
+                <button class="fav-small">♡</button>
+              </div>
+            </article>
+
+            <article class="crop-card">
+              <img src="public/assets/fonts/img/papa.jpg" alt="Papa" class="crop-image" />
+              <div class="crop-details">
+                <span>Papa</span>
+                <button class="fav-small">♡</button>
+              </div>
+            </article>
+
+            <article class="crop-card">
+              <img src="public/assets/fonts/img/pimiento.jpg" alt="Pimiento" class="crop-image" />
+              <div class="crop-details">
+                <span>Pimiento</span>
+                <button class="fav-small">♡</button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <aside class="sidebar">
+        <nav class="nav-list">
+          <button class="nav-item active">🏠<span>Home</span></button>
+          <button class="nav-item">🌱<span>Mi Huerta</span></button>
+          <button class="nav-item scan-main" aria-label="Escanear">📸</button>
+          <button class="nav-item">🧭<span>Explorar</span></button>
+          <button class="nav-item">👥<span>Comunidad</span></button>
+        </nav>
+      </aside>
     </main>
   </body>
 </html>
