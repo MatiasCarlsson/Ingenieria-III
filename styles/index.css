@@ -17,7 +17,6 @@ body {
   background: var(--bg-hueso);
   color: var(--secondary-marron-tierra);
 }
-
 /* CONTENEDOR PRINCIPAL */
 .app-container {
   display: flex;
