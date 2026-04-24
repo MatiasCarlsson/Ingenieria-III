@@ -163,16 +163,17 @@ body {
 
 /* TARJETA DE MASCOTA */
 .mascota-card {
+  background-color: #ffcfa4;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 2rem 1.5rem;
-  margin: 1rem 1.5rem;
-  background: var(--bg-hueso);
-  border: 3px solid var(--secondary-marron-tierra);
-  border-radius: 20px;
-  box-shadow: 0 6px 16px rgba(71, 43, 35, 0.15);
-  animation: slideInLeft 0.5s ease;
+  justify-content: center;
+  gap: 7rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 700px;
+  border: solid 2px var(--secondary-marron-tierra);
+  border-radius: 90px;
+  margin-bottom: 3rem;
 }
 
 @keyframes slideInLeft {
@@ -196,15 +197,30 @@ body {
 
 .mascota-info h2 {
   font-family: var(--font-retro);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: var(--primary-verde-bosque);
 }
 
 .mascota-img {
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 200px;
+  max-height: 200px;
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border: none;
+}
+
+.mascota-img::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+  border-radius: 50%;
+  background: conic-gradient(var(--primary-verde-bosque) 360deg, transparent 0deg);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 10px), black calc(100% - 10px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), black calc(100% - 10px));
+  z-index: -1;
 }
 
 .fav-btn-large {
@@ -212,9 +228,9 @@ body {
   background: var(--accent-rosa);
   border: 2px solid var(--color-1);
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 1.8rem;
+  width: 180px;
+  height: 180px;
+  font-size: 4rem;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(187, 84, 105, 0.3);
@@ -257,10 +273,10 @@ body {
 
 /* GRID DE CONTEXTO */
 .context-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  padding: 0 1.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 0 0 1rem;
   animation: slideInUp 0.6s ease;
 }
 
@@ -277,10 +293,12 @@ body {
 
 .info-card {
   background: var(--secondary-verde-oliva);
-  padding: 1.5rem;
+  padding: 3rem;
+  width: 400px;
   border-radius: 15px;
   border: 2px solid var(--color-1);
   box-shadow: 0 4px 12px rgba(71, 43, 35, 0.1);
+  align-items: center;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -292,7 +310,8 @@ body {
 
 .info-card h3 {
   font-family: var(--font-retro);
-  font-size: 1.1rem;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
   color: var(--bg-hueso);
   margin-bottom: 0.5rem;
 }
@@ -301,6 +320,7 @@ body {
   font-size: 0.95rem;
   color: var(--accent-verde-claro);
   font-weight: 600;
+  letter-spacing: 2px;
 }
 
 /* SECCIÓN DE CULTIVOS */
@@ -321,6 +341,9 @@ body {
 
 .section-header h2 {
   font-family: var(--font-retro);
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 2px;
   font-size: 1.5rem;
   color: var(--primary-verde-bosque);
 }
@@ -468,6 +491,24 @@ body {
   display: none;
 }
 
+/* SCROLLBAR PERSONALIZADO */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-hueso);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-verde-bosque);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-verde-oliva);
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .header {
@@ -484,7 +525,9 @@ body {
   }
 
   .section-header h2 {
+  
     font-size: 1.3rem;
+   
   }
 
   .crop-card {
