@@ -17,7 +17,6 @@ body {
   background: var(--bg-hueso);
   color: var(--secondary-marron-tierra);
 }
-
 /* CONTENEDOR PRINCIPAL */
 .app-container {
   display: flex;
@@ -204,14 +203,12 @@ body {
 .mascota-img {
   max-width: 300px;
   max-height: 300px;
-  background: var(--accent-verde-claro);
-  border: 2px solid var(--color-1);
-  border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .fav-btn-large {
+  position: relative;
   background: var(--accent-rosa);
   border: 2px solid var(--color-1);
   border-radius: 50%;
@@ -224,6 +221,29 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fav-btn-large::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid var(--accent-rosa);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
 .fav-btn-large:hover {
@@ -518,4 +538,25 @@ body {
     height: 45px;
     font-size: 1.5rem;
   }
+}
+
+/* ICONOS SVG */
+.size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-btn svg,
+.search-btn svg,
+.fav-btn-large svg,
+.fav-small svg,
+.nav-item svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.info-card h3 svg {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
 }
