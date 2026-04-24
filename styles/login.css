@@ -1,0 +1,372 @@
+/* ============================================
+Yvy Porã — Login (Versión armonizada)
+Paleta: beige melocotón + marrón + verde
+Tipografías: Bright Retro (títulos) + Poppins (cuerpo)
+============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --error: #c0392b;
+  --error-bg: #fdeeee;
+  --success: #3b7a1a;
+
+  --color-1: #472b23; /* marrón principal */
+  --color-2: #2f1b16; /* texto fuerte */
+  --color-3: #92451c; /* acento cálido */
+  --color-4: #bb5469; /* acento secundario */
+  --color-5: #2f4a2f; /* verde oscuro */
+  --color-6: #6e8c3a; /* verde medio */
+  --color-7: #aac889; /* verde claro */
+  --color-8: #fae0ca; /* fondo principal */
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Base (body con Poppins) ---- */
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-8);
+  color: var(--color-2);
+}
+
+/* ---- Panel izquierdo (sin decoraciones circulares) ---- */
+.bg-left {
+  width: 42%;
+  background: linear-gradient(135deg, var(--color-5), #1f3520);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-left::before,
+.bg-left::after {
+  display: none;
+}
+
+.brand-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeUp 0.6s ease both;
+}
+
+/* Logo SIN CÍRCULOS - se eliminan bordes redondeados y bordes decorativos */
+.logo-wrap {
+  width: 220px;
+  height: 220px;
+  /* Se quita el borde y el border-radius para eliminar cualquier forma circular */
+  border: none;
+  border-radius: 0;
+  overflow: visible; /* ya no se necesita clip circular */
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texto con Bright Retro para la tagline */
+.brand-tagline {
+  font-family: "Bright Retro", "Poppins", cursive;
+  font-size: 18px;
+  color: var(--color-7);
+  text-align: center;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.deco-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.deco-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-7);
+  opacity: 0.5;
+}
+
+.deco-dots span:nth-child(2) {
+  opacity: 0.8;
+  width: 8px;
+  height: 8px;
+}
+
+/* ---- Panel derecho ---- */
+.bg-right {
+  width: 58%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #fffaf6;
+}
+
+.form-panel {
+  width: 100%;
+  max-width: 420px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+
+/* ---- Header con Bright Retro ---- */
+.form-header {
+  margin-bottom: 2.5rem;
+}
+
+.form-header h1 {
+  font-family: "Bright Retro", "Poppins", cursive;
+  font-size: 34px;
+  color: var(--color-1);
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  font-size: 15px;
+  color: var(--color-3);
+  font-weight: 300;
+}
+
+/* ---- Campos (Poppins) ---- */
+.field-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-1);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-6);
+  transition: color var(--transition);
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 13px 14px 13px 44px;
+  border: 1.5px solid #d8c2b0;
+  border-radius: var(--radius-sm);
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  color: var(--color-2);
+  background: #fff;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+input::placeholder {
+  color: #b89c88;
+}
+
+input:focus {
+  border-color: var(--color-6);
+}
+
+.input-wrap:focus-within .input-icon {
+  color: var(--color-5);
+}
+
+/* ---- Error campo ---- */
+.field-group.has-error input {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
+.field-error {
+  font-size: 12px;
+  color: var(--error);
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.field-group.has-error .field-error {
+  opacity: 1;
+}
+
+/* ---- Toggle password ---- */
+.toggle-pass {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-3);
+}
+
+.toggle-pass:hover {
+  color: var(--color-1);
+}
+
+/* ---- Alerta ---- */
+.alert-error {
+  display: none;
+  gap: 10px;
+  padding: 12px;
+  background: var(--error-bg);
+  border: 1px solid #efa8a8;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+}
+
+.alert-error.visible {
+  display: flex;
+}
+
+/* ---- Botón (Poppins) ---- */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-5);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  transition:
+    background var(--transition),
+    transform 0.1s ease;
+  margin-bottom: 1.5rem;
+}
+
+.btn-submit:hover {
+  background: var(--color-6);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---- Spinner ---- */
+.btn-spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.btn-submit.loading .btn-text {
+  display: none;
+}
+
+.btn-submit.loading .btn-spinner {
+  display: block;
+}
+
+/* ---- Hint ---- */
+.form-hint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-3);
+}
+
+.back-home {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.9rem;
+  color: var(--color-5);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.back-home:hover {
+  color: var(--color-3);
+  text-decoration: underline;
+}
+
+/* ---- Animaciones ---- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+  body {
+    flex-direction: column;
+  }
+
+  .bg-left {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .logo-wrap {
+    width: 140px;
+    height: 140px;
+  }
+
+  .bg-right {
+    width: 100%;
+    padding: 2rem 1.25rem;
+  }
+
+  .form-header h1 {
+    font-size: 26px;
+  }
+}

@@ -1,0 +1,169 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop, matias, selene, emanuel, hannah]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      simulate_errors:
+        description: "Ejecutar simulacion de errores comunes"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Validate minimum unit tests (>= 5)
+        shell: bash
+        run: |
+          test_count=$(find JS -type f \( -name "*.test.js" -o -name "*.spec.js" \) -exec grep -hoE "\\b(test|it)\\s*\\(" {} + | wc -l)
+          echo "Detected tests: ${test_count}"
+          if [ "${test_count}" -lt 5 ]; then
+            echo "ERROR: Se requieren al menos 5 pruebas unitarias."
+            exit 1
+          fi
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test-and-lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+  simulate-common-errors:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.simulate_errors == true }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Simulate failing test after merge
+        id: sim_test
+        continue-on-error: true
+        shell: bash
+        run: |
+          cat > JS/.ci-temp-failing.test.js <<'EOF'
+          test('intentional failure simulation', () => {
+            expect(true).toBe(false)
+          })
+          EOF
+          npm test -- --runInBand JS/.ci-temp-failing.test.js
+          rm -f JS/.ci-temp-failing.test.js
+
+      - name: Simulate lint style/syntax error
+        id: sim_lint
+        continue-on-error: true
+        shell: bash
+        run: |
+          cat > JS/.ci-temp-lint-error.js <<'EOF'
+          const broken =
+          EOF
+          npm run lint -- JS/.ci-temp-lint-error.js
+          rm -f JS/.ci-temp-lint-error.js
+
+      - name: Simulate dependency issue
+        id: sim_dep
+        continue-on-error: true
+        run: npm install package-does-not-exist-yvy-pora-123@0.0.1
+
+      - name: Generate simulation report
+        if: always()
+        shell: bash
+        run: |
+          echo "# Simulacion de errores comunes CI" > simulation-report.md
+          echo "- Test fallido tras fusion: ${{ steps.sim_test.outcome }}" >> simulation-report.md
+          echo "- Error de estilo/sintaxis por linter: ${{ steps.sim_lint.outcome }}" >> simulation-report.md
+          echo "- Problema de dependencias: ${{ steps.sim_dep.outcome }}" >> simulation-report.md
+
+      - name: Upload simulation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-error-simulation-report
+          path: simulation-report.md
+
+  pipeline-report:
+    runs-on: ubuntu-latest
+    needs: [test-and-lint, build]
+    if: always()
+
+    steps:
+      - name: Generate CI Report
+        run: |
+          test_result="${{ needs.test-and-lint.result }}"
+          build_result="${{ needs.build.result }}"
+
+          if [ "${test_result}" = "success" ] && [ "${build_result}" = "success" ]; then
+            pipeline_status="SUCCESS"
+          else
+            pipeline_status="FAILURE"
+          fi
+
+      - name: Generate CI Report
+        run: |
+          echo "# CI/CD Pipeline Report" > ci-report.md
+          echo "" >> ci-report.md
+          echo "**Pipeline Status:** ${pipeline_status}" >> ci-report.md
+          echo "**Test and Lint Job:** ${test_result}" >> ci-report.md
+          echo "**Build Job:** ${build_result}" >> ci-report.md
+          echo "**Timestamp:** $(date -u)" >> ci-report.md
+          echo "**Branch:** ${{ github.ref_name }}" >> ci-report.md
+          echo "**Commit:** ${{ github.sha }}" >> ci-report.md
+
+      - name: Upload CI Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-report
+          path: ci-report.md

@@ -1,0 +1,67 @@
+:root {
+    --bg-hueso: #fae0ca;
+    --primary-verde-bosque: #284528;
+    --secondary-verde-oliva: #506f1b;
+    --secondary-marron-tierra: #472b23;
+    --secondary-terracota: #92451c;
+    --accent-rosa: #bb5469;
+    --accent-verde-claro: #aac889;
+    --contrast-ciruela: #400622;
+
+    /* Aliases para compatibilidad con estilos existentes */
+    --color-1: var(--secondary-marron-tierra);
+    --color-2: var(--contrast-ciruela);
+    --color-3: var(--secondary-terracota);
+    --color-4: var(--accent-rosa);
+    --color-5: var(--primary-verde-bosque);
+    --color-6: var(--secondary-verde-oliva);
+    --color-7: var(--accent-verde-claro);
+    --color-8: var(--bg-hueso);
+
+    --font-retro: "Bright Demo", serif;
+    --font-poppins: "Poppins", sans-serif;
+}
+
+@font-face {
+    font-family: "Bright Demo";
+    src: url("../public/assets/fonts/img/fonts/bright-demo.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: var(--font-poppins);
+    color: var(--secondary-marron-tierra);
+    background-color: var(--bg-hueso);
+    background-image:
+        linear-gradient(rgba(80, 111, 27, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80, 111, 27, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--primary-verde-bosque);
+}
+
+/* poppins-latin-400-normal */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff2) format('woff2'),
+         url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff) format('woff');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
