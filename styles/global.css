@@ -1,12 +1,23 @@
 :root {
-    --color-1: #472b23;
-    --color-2: #400622;
-    --color-3: #92451c;
-    --color-4: #bb5469;
-    --color-5: #284528;
-    --color-6: #506f1b;
-    --color-7: #aac889;
-    --color-8: #fae0ca;
+    --bg-hueso: #fae0ca;
+    --primary-verde-bosque: #284528;
+    --secondary-verde-oliva: #506f1b;
+    --secondary-marron-tierra: #472b23;
+    --secondary-terracota: #92451c;
+    --accent-rosa: #bb5469;
+    --accent-verde-claro: #aac889;
+    --contrast-ciruela: #400622;
+
+    /* Aliases para compatibilidad con estilos existentes */
+    --color-1: var(--secondary-marron-tierra);
+    --color-2: var(--contrast-ciruela);
+    --color-3: var(--secondary-terracota);
+    --color-4: var(--accent-rosa);
+    --color-5: var(--primary-verde-bosque);
+    --color-6: var(--secondary-verde-oliva);
+    --color-7: var(--accent-verde-claro);
+    --color-8: var(--bg-hueso);
+
     --font-retro: "Bright Demo", serif;
     --font-poppins: "Poppins", sans-serif;
 }
@@ -17,6 +28,30 @@
     font-weight: 400;
     font-style: normal;
     font-display: swap;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: var(--font-poppins);
+    color: var(--secondary-marron-tierra);
+    background-color: var(--bg-hueso);
+    background-image:
+        linear-gradient(rgba(80, 111, 27, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80, 111, 27, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--primary-verde-bosque);
 }
 
 /* poppins-latin-400-normal */
