@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,10 @@
     <main class="app-container">
       <div class="main-content">
         <header class="header">
-          <button class="icon-btn settings-btn" aria-label="Configuración">⚙️</button>
+          <div class="header-actions">
+            <button class="icon-btn settings-btn" aria-label="Configuración">⚙️</button>
+            <a class="login-btn" href="page/login.html" aria-label="Ir al login">Login</a>
+          </div>
           <div class="search-container">
             <input type="text" placeholder="Buscar..." aria-label="Buscar cultivos" />
             <button class="search-btn">🔍</button>
@@ -21,7 +24,11 @@
         <section class="mascota-card">
           <div class="mascota-info">
             <h2>Mi Mascota</h2>
-            <img src="public/assets/fonts/img/mascota.png" alt="Mascota YVY-PORA" class="mascota-img" />
+            <img
+              src="public/assets/fonts/img/mascota.png"
+              alt="Mascota YVY-PORA"
+              class="mascota-img"
+            />
           </div>
           <button class="fav-btn-large" aria-label="Añadir mascota a favoritos">❤️</button>
         </section>
