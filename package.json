@@ -6,11 +6,13 @@
   "scripts": {
     "lint": "eslint JS/*.js",
     "test": "jest --ci --coverage --coverageReporters=text --coverageReporters=lcov",
-    "build": "node -e \"console.log('Build OK: static app')\""
+    "build": "node -e \"console.log('Build OK: static app')\"",
+    "sonar": "sonar-scanner"
   },
   "devDependencies": {
     "eslint": "^9.25.1",
     "globals": "^15.15.0",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "sonarqube-scanner": "^4.2.3"
   }
 }

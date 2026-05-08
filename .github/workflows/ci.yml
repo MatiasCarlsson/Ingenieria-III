@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necesario para que SonarQube analice el historial completo
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,14 +38,14 @@ jobs:
       - name: Validate minimum unit tests (>= 5)
         shell: bash
         run: |
-          test_count=$(find JS -type f \( -name "*.test.js" -o -name "*.spec.js" \) -exec grep -hoE "\\b(test|it)\\s*\\(" {} + | wc -l)
+          test_count=$(find JS -type f \( -name "*.test.js" -o -name "*.spec.js" \) -exec grep -hoE "\b(test|it)\s*\(" {} + | wc -l)
           echo "Detected tests: ${test_count}"
           if [ "${test_count}" -lt 5 ]; then
             echo "ERROR: Se requieren al menos 5 pruebas unitarias."
             exit 1
           fi
 
-      - name: Run unit tests
+      - name: Run unit tests with coverage
         run: npm test
 
       - name: Upload coverage report
@@ -52,6 +54,17 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
+
+      # -----------------------------------------------
+      # SONARQUBE: Análisis estático de código
+      # Se ejecuta DESPUÉS de los tests para tener
+      # el reporte de cobertura (coverage/lcov.info)
+      # -----------------------------------------------
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   build:
     runs-on: ubuntu-latest
