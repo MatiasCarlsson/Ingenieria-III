@@ -61,10 +61,11 @@ jobs:
       # el reporte de cobertura (coverage/lcov.info)
       # -----------------------------------------------
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: sonarsource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
 
   build:
     runs-on: ubuntu-latest
